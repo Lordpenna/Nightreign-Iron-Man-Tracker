@@ -89,6 +89,23 @@
 </head>
 <body>
 
+  <button id="rules-button" style="position: absolute; top: 20px; right: 20px; padding: 6px 12px; background: #333; color: #f0e6d2; border: 1px solid #555; border-radius: 6px; cursor: pointer; z-index: 1000;">📜 Rules</button>
+
+  <div id="rules-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); color: #f0e6d2; font-family: 'Georgia', serif; z-index: 9999;">
+    <div style="background: #1a1a1a; margin: 100px auto; padding: 30px; width: 80%; max-width: 600px; border-radius: 10px; position: relative;">
+      <h2>Ironman Challenge Rules</h2>
+      <p>Your goal is to defeat all 8 Night Lords before you run out of Nightfarers.</p>
+      <ul style="line-height: 1.6;">
+        <li>Start a new game and name your character something like <code>Ironman[name]</code> or <code>[name]IM</code> to show you're doing the challenge.</li>
+        <li>You only lose Nightfarers during expeditions. Dying in the tutorial or in remembrances does <strong>not</strong> count.</li>
+        <li>Failing an expedition in any way means the Nightfarer you took is <strong>permanently dead</strong>. Mark them as such on this tracker.</li>
+        <li>The challenge can be done solo, with friends, or with randoms. You only “lose” the Nightfarer that <strong>you personally</strong> brought on the expedition — your team's status doesn’t affect yours.</li>
+      </ul>
+      <p style="margin-top: 20px; font-style: italic;">Good luck, Nightfarer!</p>
+      <button onclick="document.getElementById('rules-modal').style.display='none'" style="position: absolute; top: 10px; right: 10px; background: transparent; color: #f0e6d2; border: none; font-size: 1.5em; cursor: pointer;">&times;</button>
+    </div>
+  </div>
+
   <h1>Ironman Tracker</h1>
 
   <h2>Nightfarers</h2>
@@ -370,7 +387,12 @@
       location.reload();
     }
 
-    window.onload = loadStatus;
+    window.onload = function() {
+      loadStatus();
+      document.getElementById('rules-button').onclick = function() {
+        document.getElementById('rules-modal').style.display = 'block';
+      };
+    };
   </script>
 
 </body>
